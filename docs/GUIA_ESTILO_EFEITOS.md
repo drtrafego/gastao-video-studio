@@ -17,21 +17,10 @@ Regras:
 - A chave é normalizada (MAIÚSCULA, sem acento) — `norm("Domínio") === "DOMINIO"`.
 - Cor + emoji devem reforçar o conceito, não competir com ele.
 
-### Dicionário base (palavra → emoji)
-
-| Conceito | Emoji | Conceito | Emoji |
-|---|---|---|---|
-| GitHub / repositório | 📦 | Vercel / deploy / publicar | 🚀 |
-| domínio / DNS / CNAME | 🌐 | link | 🔗 |
-| Claude / IA / agente | 🤖 | código / programar | 👨‍💻 |
-| site / web | 💻 | app / aplicativo | 📱 |
-| erro / bug | ❌ 🐛 | corrigir / funcionou / deu certo | ✅ 🎉 |
-| grátis | 🆓 | atenção / cuidado | ⚠️ |
-| dinheiro / plano / preço | 💳 💰 | tempo / limite | ⏱️ |
-| ideia / sacada | 💡 | fogo / hype | 🔥 |
-
-Adapte por tema. Ex.: tema "erro/correção" usa vermelho ❌ para o problema e verde ✅
-para a solução, e a barra de progresso vai de vermelho a verde.
+**Emoji é bem-vindo.** Um emoji junto da palavra-chave deixa a edição mais viva e ajuda
+a fixar o conceito. Não há lista fixa: escolha o emoji que combina com o tema e a marca
+do vídeo. Ex.: num tema "erro/correção" faz sentido vermelho para o problema e verde para
+a solução, com a barra de progresso indo de um ao outro.
 
 ---
 
@@ -52,11 +41,17 @@ Empilhe conforme a energia desejada. Para Reels, energia alta; para aula, sóbri
 
 1. **Hook** (primeiros ~2.7s) — frase de impacto grande. Vem do **gancho da história**,
    não de descrever a tela ("Coloquei meu site no ar sem saber codar", não "Tela do Vercel").
+   - **Antes de montar, resolva o hook:** pergunte se a pessoa **já tem um hook pronto**.
+     Se tiver, use o dela. Se não tiver, **interprete o conteúdo** (transcrição/tema) e
+     **proponha um** — de preferência 2 ou 3 opções para ela escolher. O hook é a parte
+     que mais decide a retenção; não deixe no automático.
 2. **Barra de progresso** no topo — sensação de avanço, segura até o fim.
 3. **Chips de etapa** (`StepChip`) — "1. GitHub 📦", "2. Claude 🤖"... orientam o passo a passo.
 4. **Callout com seta** (`GuideCallout`) — aponta o elemento da tela ("cria o repositório 👇").
 5. **Emojis flutuantes** (`FloatingEmojis`) — energia nos beats (seção 2).
-6. **Flash de transição** (`FlashTransition`) — flash branco curto na virada de seção.
+6. **Transições** — na virada de seção/corte, uma transição deixa o vídeo mais fluido e
+   dinâmico: flash branco curto (`FlashTransition`), ou fade/slide/zoom entre trechos
+   (`@remotion/transitions`). Vale usar; só não exagere na aula longa.
 7. **Palavra-chave destacada** (seção 1) — cor + emoji na palavra que importa.
 
 Regra de dose: Reel curto = quase tudo ligado; aula longa = hook/capítulos/destaques
