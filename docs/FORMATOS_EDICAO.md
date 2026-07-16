@@ -3,6 +3,9 @@
 Este documento registra os formatos de vídeo padronizados nesta versão da ferramenta.
 Serve de referência para manter consistência e evoluir a edição ao longo do tempo.
 
+> Para a lógica de emojis, palavras-chave e níveis de efeito, ver
+> [`GUIA_ESTILO_EFEITOS.md`](./GUIA_ESTILO_EFEITOS.md).
+
 > Regra de ouro: **quando o material já vem no formato certo, mexer o mínimo.** Não
 > reenquadrar, não dar zoom, não cortar o que já está bom. Respeitar o que foi gravado.
 
