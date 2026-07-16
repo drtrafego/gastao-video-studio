@@ -9,6 +9,14 @@ dist/
 *.webm
 *.mov
 *.gif
+*.wav
+*.mp3
+
+# Midia, dados e notas privadas do mantenedor (NAO versionar)
+public/assets/
+public/*.json
+whisper-bin-x64.zip
+CLAUDE.local.md
 
 # Agent configs (created by skills installer for other AI tools)
 .codebuddy/

@@ -20,9 +20,104 @@ import {BeforeAfterDemo} from "./compositions/BeforeAfterDemo";
 import {TalkingHeadEdit} from "./templates/editing/TalkingHeadEdit";
 import {PodcastClip} from "./templates/editing/PodcastClip";
 
+// Projeto do usuario
+import {ReelsTarefaFacil} from "./compositions/ReelsTarefaFacil";
+import {ReelsAppNoAr} from "./compositions/ReelsAppNoAr";
+import {ReelsGithubVercel} from "./compositions/ReelsGithubVercel";
+import {ReelsCorrigirErros} from "./compositions/ReelsCorrigirErros";
+import {AulaCards} from "./compositions/AulaCards";
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Folder name="MeusReels">
+        <Composition
+          id="ReelsTarefaFacil"
+          component={ReelsTarefaFacil}
+          durationInFrames={4765}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_base.mp4",
+            captionsFile: "captions_reels.json",
+            hook: "Meu funcionário de IA",
+            hookSub: "trabalha todo domingo sozinho",
+          }}
+        />
+        <Composition
+          id="ReelsGabinete"
+          component={ReelsTarefaFacil}
+          durationInFrames={4316}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels2_base.mp4",
+            captionsFile: "captions_reels2.json",
+            hook: "Um advogado me chamou no Direct",
+            hookSub: "e eu construí o sistema dele com IA",
+          }}
+        />
+        <Composition
+          id="ReelsAppNoAr"
+          component={ReelsAppNoAr}
+          durationInFrames={3536}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels3_base.mp4",
+            captionsFile: "captions_reels3.json",
+            hookA: "SEU PRIMEIRO APP",
+            hookHi: "PRESO",
+            hookB: "NO SEU PC",
+            hookSub: "3 ferramentas pra botar no ar",
+          }}
+        />
+        <Composition
+          id="ReelsGithubVercel"
+          component={ReelsGithubVercel}
+          durationInFrames={3833}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_github_base.mp4",
+            captionsFile: "captions_github.json",
+            hookA: "CONSTRUÍ MEU APP",
+            hookHi: "COM IA",
+            hookB: "E BOTEI NO AR",
+            hookSub: "GitHub + Vercel, de graça",
+          }}
+        />
+        <Composition
+          id="ReelsCorrigirErros"
+          component={ReelsCorrigirErros}
+          durationInFrames={5029}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_corrigir_base.mp4",
+            captionsFile: "captions_corrigir.json",
+            hookA: "MEU SITE",
+            hookHi: "DEU ERRO",
+            hookB: "E A IA RESOLVEU",
+            hookSub: "sem eu tocar no código",
+          }}
+        />
+        <Composition
+          id="AulaCards"
+          component={AulaCards}
+          durationInFrames={40}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{cards: []}}
+        />
+      </Folder>
+
       <Folder name="Examples">
         <Composition
           id="Showcase"

@@ -5,7 +5,7 @@ Thanks for your interest in contributing! This guide covers how to add new compo
 ## Quick Start
 
 ```bash
-git clone https://github.com/highvalue-llc/ai-video-studio.git
+git clone https://github.com/drtrafego/gastao-video-studio.git
 cd ai-video-studio
 npm install
 ```

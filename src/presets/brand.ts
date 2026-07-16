@@ -1,7 +1,7 @@
 /** Brand identity — customize with your own handle and colors */
 export const BRAND = {
-  name: "AI Video Studio",
-  handle: "@your_handle",
+  name: "Gastao Video Studio",
+  handle: "@gastaomatos",
   tagline: "Create Viral Videos with AI",
   colors: {
     primary: "#8b5cf6",
@@ -11,7 +11,7 @@ export const BRAND = {
     muted: "#a0a0a0",
   },
   watermark: {
-    text: "@your_handle",
+    text: "@gastaomatos",
     opacity: 0.6,
     fontSize: 16,
   },

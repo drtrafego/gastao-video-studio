@@ -19,7 +19,7 @@ Everything runs **100% locally** on your machine. No API keys needed.
 ### Quick Start
 
 ```bash
-git clone https://github.com/highvalue-llc/ai-video-studio.git
+git clone https://github.com/drtrafego/gastao-video-studio.git
 cd ai-video-studio
 claude
 /start
@@ -137,9 +137,13 @@ scripts/detect-silence.ts   → marks silence segments
 - ffmpeg (for video editing features): `brew install ffmpeg`
 - Whisper.cpp (for transcription): auto-installed on first use
 
+### Credits
+
+This project is a fork/adaptation maintained by **Gastão Matos ([@gastaomatos](https://instagram.com/gastaomatos))**, built on top of the original **AI Video Studio** created by **Enrique Rocha ([@soyenriquerocha](https://instagram.com/soyenriquerocha))**. All credit for the base tool goes to Enrique. This version adds a Reels/Shorts editing workflow (split-screen, dynamic caption styles, silence trimming, YouTube lesson formatting) and is evolved continuously.
+
 ### License
 
-MIT — free for personal and commercial use.
+MIT — free for personal and commercial use. Original copyright (c) 2026 Enrique Rocha; see [LICENSE](LICENSE).
 
 Note: [Remotion](https://remotion.dev/license) requires a separate license for companies rendering 12+ videos/month.
 
@@ -156,7 +160,7 @@ Todo corre **100% localmente** en tu máquina. Sin claves de API.
 ### Inicio Rápido
 
 ```bash
-git clone https://github.com/highvalue-llc/ai-video-studio.git
+git clone https://github.com/drtrafego/gastao-video-studio.git
 cd ai-video-studio
 claude
 /start
@@ -228,9 +232,13 @@ Vos: "Editá mi video en public/assets/mi-grabacion.mp4.
 - ffmpeg: `brew install ffmpeg`
 - Whisper.cpp (para transcripción): se instala solo al primer uso
 
+### Créditos
+
+Este proyecto es un fork/adaptación mantenido por **Gastão Matos ([@gastaomatos](https://instagram.com/gastaomatos))**, construido sobre el **AI Video Studio** original creado por **Enrique Rocha ([@soyenriquerocha](https://instagram.com/soyenriquerocha))**. Todo el crédito de la herramienta base es de Enrique. Esta versión agrega un flujo de edición de Reels/Shorts (pantalla dividida, estilos de subtítulos dinámicos, corte de silencios, formato de clases para YouTube) y evoluciona de forma continua.
+
 ### Licencia
 
-MIT — libre para uso personal y comercial.
+MIT — libre para uso personal y comercial. Copyright original (c) 2026 Enrique Rocha; ver [LICENSE](LICENSE).
 
 Nota: [Remotion](https://remotion.dev/license) requiere licencia separada para empresas que renderizan 12+ videos por mes.
 

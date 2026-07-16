@@ -1,7 +1,11 @@
 {
-  "name": "ai-video-studio",
+  "name": "gastao-video-studio",
   "version": "1.0.0",
-  "description": "Create viral videos with AI — no timeline, no expensive software. Built with Remotion + Claude Code.",
+  "description": "Sistema de edicao de Reels e Shorts com IA (tela dividida, legendas dinamicas, corte de silencio, Whisper local). Versao mantida por Gastao Matos, construida sobre o AI Video Studio (MIT) de Enrique Rocha.",
+  "author": "Gastao Matos (@gastaomatos)",
+  "contributors": [
+    "Enrique Rocha (@soyenriquerocha) - autor do projeto base AI Video Studio (MIT)"
+  ],
   "scripts": {
     "dev": "remotion studio --browser=chrome",
     "build": "remotion bundle",
@@ -12,16 +16,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/highvalue-llc/ai-video-studio"
+    "url": "https://github.com/drtrafego/gastao-video-studio"
   },
   "license": "MIT",
   "dependencies": {
     "@imgly/background-removal-node": "^1.4.5",
+    "@remotion/animated-emoji": "^4.0.440",
     "@remotion/captions": "^4.0.440",
     "@remotion/cli": "4.0.440",
+    "@remotion/gif": "^4.0.440",
+    "@remotion/google-fonts": "^4.0.440",
     "@remotion/install-whisper-cpp": "^4.0.440",
     "@remotion/media": "^4.0.440",
     "@remotion/media-utils": "4.0.440",
+    "@remotion/motion-blur": "^4.0.440",
     "@remotion/noise": "4.0.440",
     "@remotion/player": "4.0.440",
     "@remotion/shapes": "4.0.440",
