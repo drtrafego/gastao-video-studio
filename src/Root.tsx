@@ -26,6 +26,10 @@ import {ReelsAppNoAr} from "./compositions/ReelsAppNoAr";
 import {ReelsGithubVercel} from "./compositions/ReelsGithubVercel";
 import {ReelsCorrigirErros} from "./compositions/ReelsCorrigirErros";
 import {AulaCards} from "./compositions/AulaCards";
+import {ReelsPortalMentoria} from "./compositions/ReelsPortalMentoria";
+import {ReelsTerminal} from "./compositions/ReelsTerminal";
+import {ReelsIndicacao} from "./compositions/ReelsIndicacao";
+import {ReelsChefe} from "./compositions/ReelsChefe";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -105,6 +109,70 @@ export const RemotionRoot: React.FC = () => {
             hookHi: "DEU ERRO",
             hookB: "E A IA RESOLVEU",
             hookSub: "sem eu tocar no código",
+          }}
+        />
+        <Composition
+          id="ReelsPortalMentoria"
+          component={ReelsPortalMentoria}
+          durationInFrames={3743}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_portal_base.mp4",
+            captionsFile: "captions_portal.json",
+            hookA: "PORTAL DE MENTORIA",
+            hookHi: "CUSTAVA R$ 30 MIL",
+            hookB: "HOJE PEÇO PRO CLAUDE",
+            hookSub: "e sai de graça 🤯",
+          }}
+        />
+        <Composition
+          id="ReelsTerminal"
+          component={ReelsTerminal}
+          durationInFrames={3950}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_terminal_base.mp4",
+            captionsFile: "captions_terminal.json",
+            hookA: "CONSTRUÍ +20 SITES",
+            hookHi: "SEM ENTENDER",
+            hookB: "O QUE A IA FAZ",
+            hookSub: "e você também consegue",
+          }}
+        />
+        <Composition
+          id="ReelsIndicacao"
+          component={ReelsIndicacao}
+          durationInFrames={2858}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_indicacao_base.mp4",
+            captionsFile: "captions_indicacao.json",
+            hookA: "INDICAÇÃO NÃO É CANAL",
+            hookHi: "É SORTE",
+            hookB: "COM NOME BONITO",
+            hookSub: "e te deixa sem previsibilidade",
+          }}
+        />
+        <Composition
+          id="ReelsChefe"
+          component={ReelsChefe}
+          durationInFrames={1910}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_chefe_base.mp4",
+            captionsFile: "captions_chefe.json",
+            hookA: "VOCÊ É O PIOR",
+            hookHi: "CHEFE",
+            hookB: "QUE VOCÊ JÁ TEVE",
+            hookSub: "e nem percebe",
           }}
         />
         <Composition

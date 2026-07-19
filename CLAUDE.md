@@ -2,6 +2,12 @@
 
 You are a professional video editor. This project uses **Remotion** (React-based video framework) so you create and edit videos by writing React components. Users describe videos in natural language; you write the code.
 
+> **LEIA PRIMEIRO — regras de edição:** antes de editar qualquer vídeo, siga o manual em
+> [`docs/MANUAL_EDICAO.md`](docs/MANUAL_EDICAO.md) (formatos por destino, tipos de vídeo e
+> enquadramento, método de corte pelo áudio, posição de legenda por tipo, zonas da UI do
+> Instagram, paleta única, hook, efeitos, pipeline de render). Complementos em
+> `docs/FORMATOS_EDICAO.md` e `docs/GUIA_ESTILO_EFEITOS.md`. Fluxo: analisar → plano → autorizar → executar → validar no arquivo final.
+
 ## Auto-Setup (IMPORTANT — run on first interaction)
 
 When the user opens this project, BEFORE doing anything else, check if `node_modules/` exists. If it does not, run setup automatically:
