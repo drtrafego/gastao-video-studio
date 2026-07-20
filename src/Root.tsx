@@ -30,6 +30,7 @@ import {ReelsPortalMentoria} from "./compositions/ReelsPortalMentoria";
 import {ReelsTerminal} from "./compositions/ReelsTerminal";
 import {ReelsIndicacao} from "./compositions/ReelsIndicacao";
 import {ReelsChefe} from "./compositions/ReelsChefe";
+import {ReelsCaseImobiliaria} from "./compositions/ReelsCaseImobiliaria";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -173,6 +174,18 @@ export const RemotionRoot: React.FC = () => {
             hookHi: "CHEFE",
             hookB: "QUE VOCÊ JÁ TEVE",
             hookSub: "e nem percebe",
+          }}
+        />
+        <Composition
+          id="ReelsCaseImobiliaria"
+          component={ReelsCaseImobiliaria}
+          durationInFrames={1824}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_case_base.mp4",
+            captionsFile: "captions_case.json",
           }}
         />
         <Composition
