@@ -151,7 +151,7 @@ export const ReelsMetaRobo: React.FC<ReelsMetaProps> = ({
 
       {/* legenda: rosto em close ocupa ate ~y1250 -> legenda no PEITO (1380), fora da cara.
           tela: sem rosto -> legenda no topo (180) sobre area escura do navegador. */}
-      {wordsTH.length > 0 && <NeonCaption words={wordsTH} chunkSize={3} fontSize={56} top={1380} />}
+      {wordsTH.length > 0 && <NeonCaption words={wordsTH} chunkSize={3} fontSize={56} top={1520} />}
       {wordsScreen.length > 0 && <NeonCaption words={wordsScreen} chunkSize={3} fontSize={52} top={180} />}
 
       {/* callouts sobre a tela (bloco screen 15-58s) */}

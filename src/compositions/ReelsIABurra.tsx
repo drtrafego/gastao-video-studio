@@ -134,7 +134,7 @@ export const ReelsIABurra: React.FC<ReelsIABurraProps> = ({
       {/* legenda sobre a parte baixa do terminal (cara fica na webcam, no topo),
           em top=1330: abaixo dos cards (centro) e ACIMA do rodape do Instagram (1450+). */}
       {words.length > 0 && (
-        <AlertCaption words={words} chunkSize={3} fontSize={54} top={1330} />
+        <AlertCaption words={words} chunkSize={3} fontSize={54} top={1420} />
       )}
 
       {/* cards de destaque nos momentos-chave */}
