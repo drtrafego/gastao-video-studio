@@ -31,6 +31,8 @@ import {ReelsTerminal} from "./compositions/ReelsTerminal";
 import {ReelsIndicacao} from "./compositions/ReelsIndicacao";
 import {ReelsChefe} from "./compositions/ReelsChefe";
 import {ReelsCaseImobiliaria} from "./compositions/ReelsCaseImobiliaria";
+import {ReelsMetaRobo} from "./compositions/ReelsMetaRobo";
+import {ReelsIABurra} from "./compositions/ReelsIABurra";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -186,6 +188,30 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{
             videoSrc: "assets/reels_case_base.mp4",
             captionsFile: "captions_case.json",
+          }}
+        />
+        <Composition
+          id="ReelsMetaRobo"
+          component={ReelsMetaRobo}
+          durationInFrames={2424}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_meta_base.mp4",
+            captionsFile: "captions_meta.json",
+          }}
+        />
+        <Composition
+          id="ReelsIABurra"
+          component={ReelsIABurra}
+          durationInFrames={4256}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_burra_base.mp4",
+            captionsFile: "captions_burra.json",
           }}
         />
         <Composition
