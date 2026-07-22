@@ -32,6 +32,7 @@ import {ReelsIndicacao} from "./compositions/ReelsIndicacao";
 import {ReelsChefe} from "./compositions/ReelsChefe";
 import {ReelsCaseImobiliaria} from "./compositions/ReelsCaseImobiliaria";
 import {ReelsMetaRobo} from "./compositions/ReelsMetaRobo";
+import {ReelsAgendaCheia} from "./compositions/ReelsAgendaCheia";
 import {ReelsIABurra} from "./compositions/ReelsIABurra";
 
 export const RemotionRoot: React.FC = () => {
@@ -200,6 +201,18 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{
             videoSrc: "assets/reels_meta_base.mp4",
             captionsFile: "captions_meta.json",
+          }}
+        />
+        <Composition
+          id="ReelsAgendaCheia"
+          component={ReelsAgendaCheia}
+          durationInFrames={2568}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_agenda_base.mp4",
+            captionsFile: "captions_agenda.json",
           }}
         />
         <Composition

@@ -71,3 +71,20 @@ o vídeo inteiro no Remotion (aula longa).
   preset `fast`/`veryfast` é o fallback confiável.
 - Manter sempre o arquivo de qualidade máxima; gerar versões comprimidas só quando
   precisar caber num limite de upload.
+
+---
+
+## Abertura "chegada na câmera"
+
+Quando o bruto começa com a pessoa entrando no quadro e parando na frente do celular
+para falar, esse trecho não deve ser descartado: ele vira a abertura.
+
+1. Localizar o instante da chegada (detecção de silêncio + mosaico dos primeiros segundos).
+2. Acelerar o trecho de deslocamento (`setpts=PTS/2.6`) com rastro (`tmix=frames=3`);
+   o áudio acompanha com `atempo` encadeado (cada instância aceita no máximo 2.0).
+3. No instante em que a pessoa para, aplicar zoom punch com tremor via `zoompan`
+   (`z='1+0.20*exp(-in_time*7)'`, `x` com seno amortecido). O filtro `crop` não serve:
+   largura e altura são avaliadas uma única vez.
+4. Sobre o impacto entram flash curto e linhas de velocidade, e o hook aparece junto,
+   crescendo de escala. Flash discreto: opacidade alta lava a imagem inteira.
+5. Os tempos das legendas precisam do deslocamento correspondente ao trecho acelerado.
