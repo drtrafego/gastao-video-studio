@@ -34,6 +34,7 @@ import {ReelsCaseImobiliaria} from "./compositions/ReelsCaseImobiliaria";
 import {ReelsMetaRobo} from "./compositions/ReelsMetaRobo";
 import {ReelsAgendaCheia} from "./compositions/ReelsAgendaCheia";
 import {ReelsIABurra} from "./compositions/ReelsIABurra";
+import {ReelsAmandaEstrutura} from "./compositions/ReelsAmandaEstrutura";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -225,6 +226,18 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{
             videoSrc: "assets/reels_burra_base.mp4",
             captionsFile: "captions_burra.json",
+          }}
+        />
+        <Composition
+          id="ReelsAmandaEstrutura"
+          component={ReelsAmandaEstrutura}
+          durationInFrames={4688}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/reels_amanda_base.mp4",
+            captionsFile: "captions_amanda.json",
           }}
         />
         <Composition
