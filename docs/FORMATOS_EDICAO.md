@@ -88,3 +88,37 @@ para falar, esse trecho não deve ser descartado: ele vira a abertura.
 4. Sobre o impacto entram flash curto e linhas de velocidade, e o hook aparece junto,
    crescendo de escala. Flash discreto: opacidade alta lava a imagem inteira.
 5. Os tempos das legendas precisam do deslocamento correspondente ao trecho acelerado.
+
+## Corte por voz (aula e screencast, sem legenda)
+
+Formato mais simples do catálogo: remover espera morta, suspiro e barulho, mantendo
+enquadramento e resolução nativos. Uma passada de ffmpeg, nada de Remotion.
+
+```bash
+scripts/voice-cut.sh "bruto.mp4" "out/editado.mp4"
+GANHO=20 scripts/voice-cut.sh "bruto.mp4" "out/editado.mp4"   # gravação fraca
+scripts/voice-cut.sh "bruto.mp4" "out/x.mp4" --analise        # só mede, não renderiza
+```
+
+O critério é a voz, não o volume. Barulho de movimento e batida próxima têm o mesmo
+nível da fala, então energia sozinha não separa os dois. O que separa:
+
+- **Proximidade**: o piso é adaptativo, medido do próprio vídeo (nível da fala menos
+  24 dB). Microfone perto da boca deixa a fala muito acima do fundo, e ruído distante
+  como carro na rua cai fora sozinho.
+- **Periodicidade**: voz tem pitch, ruído não. Autocorrelação na faixa de 70 a 320 Hz.
+- **Timbre**: energia entre 300 e 3000 Hz sobre o total. Carro e vento ficam abaixo
+  de 200 Hz e não passam.
+- **Continuidade**: pitch estável por várias janelas seguidas.
+- **Ilha**: bloco curto cercado de silêncio longo dos dois lados é ruído, não fala.
+
+Duas armadilhas que não dão erro visível:
+
+- `loudnorm` no áudio de análise **cega a detecção**, porque o ganho dinâmico levanta
+  o ruído de fundo até o nível da fala. Analisar sempre o áudio cru; se precisar de
+  ganho, que seja estático.
+- No ffmpeg com várias saídas, `-ar` e `-ac` valem por saída. Declarar uma vez só faz
+  as demais saírem em 48 kHz estéreo e a análise passa a ler o sinal deslocado.
+
+Antes de entregar, conferir quantos blocos ficaram abaixo de 0,8 s. Mais que três
+indica vídeo picado.
