@@ -122,3 +122,42 @@ Duas armadilhas que não dão erro visível:
 
 Antes de entregar, conferir quantos blocos ficaram abaixo de 0,8 s. Mais que três
 indica vídeo picado.
+
+## Vídeo híbrido: talking head muito próximo + tela filmada pelo celular
+
+Aparece quando a gravação alterna entre a pessoa falando com o rosto ocupando quase
+todo o quadro e o celular apontado para a tela do notebook, mostrando o sistema
+rodando. Os dois trechos pedem tratamentos opostos, e a legenda não pode ficar fixa.
+
+**Como mapear os trechos sem assistir o vídeo inteiro:** medir o brilho da faixa
+superior quadro a quadro (`fps=2,crop=iw:ih/3:0:0,signalstats,metadata=print`) e
+classificar. No talking head o topo é parede clara, na tela filmada é moldura escura
+do notebook. O `metadata=print:file=` quebra com caminho absoluto do Windows por
+causa dos dois-pontos: rodar de dentro da pasta e usar nome relativo. O corte de
+brilho gera falso positivo quando o notebook aparece de longe com o quarto claro em
+volta, então conferir os limites com frames antes de fechar o mapa.
+
+**Legenda com altura por trecho.** No talking head próximo, o queixo desce abaixo de
+y1500 e a zona de descrição do Reel começa em y1450: não sobra espaço embaixo. A
+legenda vai para cima (top 290), sobre cabelo e parede. Na tela filmada ela volta
+para baixo (top 1300), onde só há barra de tarefas e linhas de lista. O `ScanCaption`
+recebe as zonas prontas (`fromFrame`, `toFrame`, `top`, `maxWidth`, `plate`) e desliza
+entre as alturas nos 10 frames anteriores à virada.
+
+**Hook e CTA também saem do centro.** Com o rosto tão próximo, card centralizado vira
+venda sobre os olhos. Ambos vão para a faixa alta (hook em top 330, CTA em top 300),
+com a base acima da linha da sobrancelha medida no frame de cabeça mais alta.
+
+**Tela filmada é de baixa resolução por natureza.** Duas defesas: placa escura atrás
+da legenda (`rgba(4,12,22,0.55)`), porque o fundo branco do LinkedIn come o texto; e
+número grande cobrindo o painel ilegível. O número precisa **bater com o que está na
+tela**, não com o que a pessoa fala arredondando, senão o card contradiz a prova.
+
+**Bruto de celular costuma ser VFR.** `r_frame_rate` diz 29,97 mas o `avg_frame_rate`
+real pode ser outro. Cortar direto com `select`/`setpts` reconstrói como CFR e estica
+o resultado (um corte de 137 s saiu com 208 s). Normalizar antes:
+`-fps_mode cfr -r 30`, e só então cortar por voz.
+
+**Câmera dinâmica sem Remotion.** Um único `zoompan` resolve zoom lento nos trechos de
+tela, respiro no talking head, punch e tremor nas viradas, tudo por expressão de
+`in_time` (soma de gaussianas). Roda a cerca de 0,5x tempo real em 1080x1920.

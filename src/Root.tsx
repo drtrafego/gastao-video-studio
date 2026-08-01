@@ -37,6 +37,7 @@ import {ReelsIABurra} from "./compositions/ReelsIABurra";
 import {ReelsAmandaEstrutura} from "./compositions/ReelsAmandaEstrutura";
 import {ReelsGabinete} from "./compositions/ReelsGabinete";
 import {ReelsTelinhaPreta} from "./compositions/ReelsTelinhaPreta";
+import {ReelsMentira} from "./compositions/ReelsMentira";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -264,6 +265,18 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{
             videoSrc: "assets/reels_telinha_base.mp4",
             captionsFile: "captions_telinha.json",
+          }}
+        />
+        <Composition
+          id="ReelsMentira"
+          component={ReelsMentira}
+          durationInFrames={4105}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/mentira_base.mp4",
+            captionsFile: "captions_mentira.json",
           }}
         />
         <Composition
