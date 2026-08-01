@@ -30,8 +30,15 @@ const INK = "#08060a";
 
 const sf = (s: number, fps: number) => Math.round(s * fps);
 
-/** Hook central na zona 4:5 do feed (fala de abertura do proprio Gastao). */
-const HookCard: React.FC<{dur: number}> = ({dur}) => {
+/**
+ * Hook central na zona 4:5 do feed. Texto LITERAL da fala de abertura do
+ * Gastao, em dois cards sincronizados com o que ele diz (0,18s a 8,10s).
+ */
+const HookCard: React.FC<{dur: number; children: React.ReactNode; fontSize?: number}> = ({
+  dur,
+  children,
+  fontSize = 62,
+}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   loadGoogleFont(DISPLAY);
@@ -46,14 +53,14 @@ const HookCard: React.FC<{dur: number}> = ({dur}) => {
     <AbsoluteFill style={{justifyContent: "center", alignItems: "center", zIndex: 58, opacity: out}}>
       <div
         style={{
-          background: "rgba(8,6,10,0.86)",
+          background: "rgba(8,6,10,0.88)",
           border: `2px solid ${MAGENTA}`,
           borderRadius: 24,
-          padding: "34px 44px",
-          maxWidth: 950,
+          padding: "32px 42px",
+          maxWidth: 960,
           textAlign: "center",
           boxShadow: `0 26px 60px rgba(0,0,0,0.65), 0 0 40px rgba(255,45,149,0.25)`,
-          transform: `scale(${interpolate(enter, [0, 1], [0.87, 1])})`,
+          transform: `scale(${interpolate(enter, [0, 1], [0.88, 1])})`,
           opacity: enter,
         }}
       >
@@ -61,37 +68,26 @@ const HookCard: React.FC<{dur: number}> = ({dur}) => {
           style={{
             fontFamily: `'${MONO}',monospace`,
             fontWeight: 800,
-            fontSize: 30,
+            fontSize: 26,
             color: MAGENTA,
             letterSpacing: 1,
-            marginBottom: 16,
+            marginBottom: 14,
+            textAlign: "left",
           }}
         >
-          {"> "}essa telinha preta{blink ? "_" : " "}
+          {">"} gastaomatos{blink ? "_" : " "}
         </div>
         <div
           style={{
             fontFamily: `'${DISPLAY}',sans-serif`,
             fontWeight: 700,
-            fontSize: 82,
+            fontSize,
             color: WHITE,
-            lineHeight: 1.04,
-            letterSpacing: -1.5,
+            lineHeight: 1.12,
+            letterSpacing: -1.2,
           }}
         >
-          É MUITO MAIS <span style={{color: MAGENTA}}>FÁCIL</span>
-        </div>
-        <div
-          style={{
-            fontFamily: `'${DISPLAY}',sans-serif`,
-            fontWeight: 500,
-            fontSize: 44,
-            color: "rgba(255,255,255,0.9)",
-            marginTop: 16,
-            lineHeight: 1.16,
-          }}
-        >
-          do que você imagina
+          {children}
         </div>
       </div>
     </AbsoluteFill>
@@ -287,7 +283,7 @@ export const ReelsTelinhaPreta: React.FC<ReelsTelinhaPretaProps> = ({
     fetch(staticFile(captionsFile))
       .then((r) => r.json())
       .then((caps: {text: string; startMs: number; endMs: number}[]) => {
-        const startCut = 3300; // legenda entra depois do hook
+        const startCut = 8150; // legenda entra depois da fala de abertura (hook)
         setWords(
           caps
             .filter((c) => c.text && c.text.trim() && c.startMs >= startCut)
@@ -325,8 +321,18 @@ export const ReelsTelinhaPreta: React.FC<ReelsTelinhaPretaProps> = ({
 
       <ProgressBar />
 
-      <Sequence durationInFrames={sf(3.2, fps)}>
-        <HookCard dur={sf(3.2, fps)} />
+      {/* hook = fala literal de abertura, em dois tempos */}
+      <Sequence durationInFrames={sf(2.34, fps)}>
+        <HookCard dur={sf(2.34, fps)} fontSize={66}>
+          Pode parecer estranho isso que eu vou falar para vocês,
+        </HookCard>
+      </Sequence>
+      <Sequence from={sf(2.34, fps)} durationInFrames={sf(6.06, fps)}>
+        <HookCard dur={sf(6.06, fps)} fontSize={54}>
+          mas essa telinha preta aqui embaixo onde eu trabalho, ele é{" "}
+          <span style={{color: MAGENTA}}>muito mais fácil de manusear</span> do que vocês
+          imaginam.
+        </HookCard>
       </Sequence>
 
       {/* screencast tipo A: legenda karaoke na tarja preta de cima (rosto y733-817 livre) */}
