@@ -17,6 +17,9 @@ export interface AlertCaptionProps {
   boxColor?: string;
   inkColor?: string;
   activeColor?: string;
+  maxWidth?: number;
+  align?: "center" | "left";
+  left?: number;
 }
 
 // Estilo "etiqueta de alerta": caixa laranja solida, texto escuro,
@@ -30,6 +33,9 @@ export const AlertCaption: React.FC<AlertCaptionProps> = ({
   boxColor = "#f97316",
   inkColor = "#1a0f00",
   activeColor = "#ffffff",
+  maxWidth = 920,
+  align = "center",
+  left = 50,
 }) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -60,14 +66,14 @@ export const AlertCaption: React.FC<AlertCaptionProps> = ({
   const y = interpolate(appear, [0, 1], [20, 0]);
 
   return (
-    <div style={{position: "absolute", top, left: 0, width: "100%", display: "flex", justifyContent: "center", zIndex: 55, pointerEvents: "none"}}>
+    <div style={{position: "absolute", top, left: 0, width: "100%", display: "flex", justifyContent: align === "left" ? "flex-start" : "center", paddingLeft: align === "left" ? left : 0, zIndex: 55, pointerEvents: "none"}}>
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center",
+          justifyContent: align === "left" ? "flex-start" : "center",
           gap: "4px 14px",
-          maxWidth: 920,
+          maxWidth,
           padding: "16px 28px",
           background: boxColor,
           borderRadius: 20,
@@ -92,6 +98,7 @@ export const AlertCaption: React.FC<AlertCaptionProps> = ({
                 lineHeight: 1.1,
                 color: isActive ? activeColor : inkColor,
                 display: "inline-block",
+                marginRight: i < active.length - 1 ? 14 : 0,
                 transform: `scale(${scale})`,
                 letterSpacing: -0.5,
                 textShadow: isActive ? "0 2px 8px rgba(0,0,0,0.35)" : "none",
