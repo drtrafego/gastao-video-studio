@@ -16,7 +16,6 @@ const SANS = "Space Grotesk";
 // ---- PALETA UNICA: laranja (mesma do reels_ia_burra) ----
 const ORANGE = "#f97316";
 const ORANGE_LT = "#fb923c";
-const WHITE = "#ffffff";
 
 const sf = (s: number, fps: number) => Math.round(s * fps);
 
@@ -32,7 +31,13 @@ const ProgressBar: React.FC = () => {
 };
 
 // Hook = fala literal de abertura (regra dura do projeto), 2 cards: setup e virada.
-const HookCard: React.FC<{lines: string[]; accent?: boolean}> = ({lines, accent}) => {
+// Hierarquia forte: linhas de contexto pequenas/brancas, linha de impacto GRANDE/laranja/glow
+// (pedido do Gastao 05/08: o hook anterior ficou "tudo uma cor so", sem destaque, "nao virou Hook").
+export interface HookPart {
+  text: string;
+  big?: boolean;
+}
+const HookCard: React.FC<{parts: HookPart[]}> = ({parts}) => {
   const frame = useCurrentFrame();
   const {fps, durationInFrames} = useVideoConfig();
   loadGoogleFont(SANS);
@@ -40,34 +45,43 @@ const HookCard: React.FC<{lines: string[]; accent?: boolean}> = ({lines, accent}
   const exitStart = durationInFrames - 10;
   const exit = interpolate(frame, [exitStart, durationInFrames], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   const y = interpolate(enter, [0, 1], [30, 0]);
+  const bigIndex = parts.findIndex((p) => p.big);
+  const pop = spring({frame: frame - 8, fps, config: {damping: 11, stiffness: 200, mass: 0.6}, durationInFrames: 12});
   return (
-    <AbsoluteFill style={{justifyContent: "flex-start", alignItems: "center", paddingTop: 820, zIndex: 58, opacity: enter * exit}}>
+    <AbsoluteFill style={{justifyContent: "flex-start", alignItems: "center", paddingTop: 780, zIndex: 58, opacity: enter * exit}}>
       <div
         style={{
-          maxWidth: 560,
+          maxWidth: 620,
           textAlign: "center",
-          padding: "26px 32px",
+          padding: "24px 30px",
           borderRadius: 22,
-          background: "rgba(0,0,0,0.55)",
+          background: "rgba(0,0,0,0.6)",
           backdropFilter: "blur(2px)",
           transform: `translateY(${y}px)`,
         }}
       >
-        {lines.map((line, i) => (
+        {parts.map((part, i) => (
           <div
             key={i}
             style={{
               fontFamily: `'${SANS}', sans-serif`,
-              fontWeight: 700,
-              fontSize: 40,
-              lineHeight: 1.25,
-              color: accent && i === lines.length - 1 ? ORANGE : WHITE,
-              WebkitTextStroke: "5px #000",
+              fontWeight: part.big ? 800 : 600,
+              fontSize: part.big ? 70 : 34,
+              lineHeight: part.big ? 1.05 : 1.3,
+              letterSpacing: part.big ? -1 : 0,
+              textTransform: part.big ? "uppercase" : "none",
+              color: part.big ? ORANGE : "rgba(255,255,255,0.92)",
+              WebkitTextStroke: part.big ? "6px #000" : "4px #000",
               paintOrder: "stroke fill",
-              textShadow: "0 6px 18px rgba(0,0,0,0.85)",
+              textShadow: part.big
+                ? `0 0 34px rgba(249,115,22,0.65), 0 8px 20px rgba(0,0,0,0.9)`
+                : "0 4px 14px rgba(0,0,0,0.85)",
+              transform: part.big && i === bigIndex ? `scale(${interpolate(pop, [0, 1], [0.9, 1])})` : "none",
+              marginTop: part.big ? 6 : 2,
+              marginBottom: part.big ? 6 : 2,
             }}
           >
-            {line}
+            {part.text}
           </div>
         ))}
       </div>
@@ -135,20 +149,35 @@ export const ReelsCampanhas: React.FC<ReelsCampanhasProps> = ({
 
       <ProgressBar />
 
-      {/* Hook = fala literal de abertura (0 a 10.96s), 2 cards: setup e virada */}
+      {/* Hook = fala literal de abertura (0 a 10.96s), 2 cards: setup e virada.
+          Linha de impacto GRANDE/laranja/glow, resto pequeno/branco (pedido do Gastao). */}
       <Sequence from={0} durationInFrames={sf(4.64, fps)}>
-        <HookCard lines={["Poucas pessoas sabem,", "mas hoje o Claude faz qualquer", "tarefa que necessita de raciocínio."]} />
+        <HookCard
+          parts={[
+            {text: "Poucas pessoas sabem,"},
+            {text: "mas hoje o Claude"},
+            {text: "faz qualquer tarefa", big: true},
+            {text: "que necessita de raciocínio."},
+          ]}
+        />
       </Sequence>
       <Sequence from={sf(4.64, fps)} durationInFrames={sf(10.96, fps) - sf(4.64, fps)}>
-        <HookCard lines={["Ele não vai substituir as pessoas,", "mas ajuda a facilitar o trabalho", "e otimizar o tempo."]} accent />
+        <HookCard
+          parts={[
+            {text: "Ele não vai substituir as pessoas,"},
+            {text: "mas ajuda a"},
+            {text: "facilitar o trabalho", big: true},
+            {text: "e otimizar o tempo."},
+          ]}
+        />
       </Sequence>
 
-      {/* legenda karaoke laranja no MEIO (pedido do Gastao: topo nao aparece no feed).
-          A partir da campanha4 (frame 4476 = 149.2s) o layout muda pra tela cheia
-          do Gerenciador de Anuncios com cards de preview a direita (x630-900), entao
-          a legenda desce pra ancorada a esquerda nesse trecho pra nao cobrir os cards. */}
+      {/* legenda karaoke laranja bem no CORTE entre webcam (termina y816) e a tela
+          (comeca y816), pedido do Gastao 05/08: nao quer mais lá embaixo (top=1080),
+          quer centralizada exatamente na linha de emenda das duas cameras, que e
+          area sem informacao importante e fica bem destacada. */}
       {words.filter((w) => w.startFrame < 4476).length > 0 && (
-        <AlertCaption words={words.filter((w) => w.startFrame < 4476)} chunkSize={2} fontSize={54} top={1080} maxWidth={560} boxColor={ORANGE} />
+        <AlertCaption words={words.filter((w) => w.startFrame < 4476)} chunkSize={2} fontSize={54} top={770} maxWidth={560} boxColor={ORANGE} />
       )}
       {words.filter((w) => w.startFrame >= 4476).length > 0 && (
         <AlertCaption words={words.filter((w) => w.startFrame >= 4476)} chunkSize={2} fontSize={54} top={1080} maxWidth={520} boxColor={ORANGE} align="left" left={50} />
