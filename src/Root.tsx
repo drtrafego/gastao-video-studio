@@ -274,25 +274,25 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="ReelsCampanhas"
           component={ReelsCampanhas}
-          durationInFrames={5853}
+          durationInFrames={6080}
           fps={30}
           width={1080}
           height={1920}
           defaultProps={{
             videoSrc: "assets/campanha_base.mp4",
-            captionsFile: "captions_campanha_v2.json",
+            captionsFile: "captions_campanha_v3.json",
           }}
         />
         <Composition
           id="ReelsCampanhasCurto"
           component={ReelsCampanhasCurto}
-          durationInFrames={2497}
+          durationInFrames={2471}
           fps={30}
           width={1080}
           height={1920}
           defaultProps={{
             videoSrc: "assets/campanha_curto_base.mp4",
-            captionsFile: "captions_campanha_curto.json",
+            captionsFile: "captions_campanha_curto_v2.json",
           }}
         />
         <Composition

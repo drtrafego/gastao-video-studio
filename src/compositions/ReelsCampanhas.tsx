@@ -121,7 +121,7 @@ const KeyChip: React.FC<{text: string; dur: number}> = ({text, dur}) => {
 
 export const ReelsCampanhas: React.FC<ReelsCampanhasProps> = ({
   videoSrc = "assets/campanha_base.mp4",
-  captionsFile = "captions_campanha_v2.json",
+  captionsFile = "captions_campanha_v3.json",
   transparent = false,
 }) => {
   const {fps} = useVideoConfig();
@@ -181,11 +181,19 @@ export const ReelsCampanhas: React.FC<ReelsCampanhasProps> = ({
       {words.filter((w) => w.startFrame < 4476).length > 0 && (
         <AlertCaption words={words.filter((w) => w.startFrame < 4476)} chunkSize={2} fontSize={54} top={770} maxWidth={560} boxColor={ORANGE} />
       )}
-      {/* campanha4 (frame>=4476) foi reenquadrado de novo (05/08): webcam em cima
-          (y0-608) + cards da campanha embaixo (y819-1709), com um vao preto sem
-          informacao em y608-819 — mesma logica da linha de corte, so que aqui. */}
-      {words.filter((w) => w.startFrame >= 4476).length > 0 && (
-        <AlertCaption words={words.filter((w) => w.startFrame >= 4476)} chunkSize={2} fontSize={50} top={660} maxWidth={560} boxColor={ORANGE} />
+      {/* trecho novo (06/08, correcao): frame 4476-4702 mostra a LISTA de campanhas
+          da Meta (a fala "o Claude ja fez toda a campanha, eu venho aqui e confiro"
+          e a parte mais importante, tinha sido cortada por engano). Webcam em cima
+          (y0-603) + tabela embaixo (y603-826), legenda desce pro vao preto abaixo
+          da tabela (top=900) pra nao cobrir a linha da campanha. */}
+      {words.filter((w) => w.startFrame >= 4476 && w.startFrame < 4703).length > 0 && (
+        <AlertCaption words={words.filter((w) => w.startFrame >= 4476 && w.startFrame < 4703)} chunkSize={2} fontSize={50} top={900} maxWidth={560} boxColor={ORANGE} />
+      )}
+      {/* campanha4 antigo (frame>=4703, deslocado +227 frames pelo intro novo):
+          webcam em cima (y0-608) + cards da campanha embaixo (y819-1709), com um
+          vao preto sem informacao em y608-819 — mesma logica da linha de corte. */}
+      {words.filter((w) => w.startFrame >= 4703).length > 0 && (
+        <AlertCaption words={words.filter((w) => w.startFrame >= 4703)} chunkSize={2} fontSize={50} top={660} maxWidth={560} boxColor={ORANGE} />
       )}
 
       {/* chips de destaque embaixo (pedido do Gastao: embaixo eh mais confiavel que em cima) */}

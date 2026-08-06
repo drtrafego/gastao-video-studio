@@ -115,7 +115,7 @@ const KeyChip: React.FC<{text: string; dur: number}> = ({text, dur}) => {
 // (ver build_short.cjs no scratchpad da sessao pra logica de selecao/remapeamento).
 export const ReelsCampanhasCurto: React.FC<ReelsCampanhasCurtoProps> = ({
   videoSrc = "assets/campanha_curto_base.mp4",
-  captionsFile = "captions_campanha_curto.json",
+  captionsFile = "captions_campanha_curto_v2.json",
   transparent = false,
 }) => {
   const {fps} = useVideoConfig();
@@ -139,10 +139,14 @@ export const ReelsCampanhasCurto: React.FC<ReelsCampanhasCurtoProps> = ({
       .catch(() => continueRender(handle));
   }, [captionsFile, fps, handle]);
 
-  // boundary: a partir de 69.7s (frame 2091) o trecho e do campanha4 reenquadrado
-  // de novo (webcam em cima + cards da campanha embaixo), legenda centralizada no
-  // vao entre as duas metades (igual ao ReelsCampanhas).
+  // boundary (06/08, correcao): a partir de 69.7s (frame 2091) entra o trecho que
+  // faltava — a LISTA de campanhas da Meta, onde o Gastao fala "o Claude ja fez
+  // toda a campanha, eu venho aqui e confiro" (a parte mais importante, tinha sido
+  // cortada por engano). A partir de 77.266s (frame 2318) entra o fechamento
+  // "espero que gostado, curta comenta compartilhe", ainda com webcam em cima +
+  // cards da campanha embaixo (mesma tela do editor de criativo).
   const BOUNDARY_FRAME = 2091;
+  const CTA_FRAME = 2318;
 
   return (
     <AbsoluteFill style={{backgroundColor: transparent ? "transparent" : "#000"}}>
@@ -174,8 +178,13 @@ export const ReelsCampanhasCurto: React.FC<ReelsCampanhasCurtoProps> = ({
       {words.filter((w) => w.startFrame < BOUNDARY_FRAME).length > 0 && (
         <AlertCaption words={words.filter((w) => w.startFrame < BOUNDARY_FRAME)} chunkSize={2} fontSize={54} top={770} maxWidth={560} boxColor={ORANGE} />
       )}
-      {words.filter((w) => w.startFrame >= BOUNDARY_FRAME).length > 0 && (
-        <AlertCaption words={words.filter((w) => w.startFrame >= BOUNDARY_FRAME)} chunkSize={2} fontSize={50} top={660} maxWidth={560} boxColor={ORANGE} />
+      {/* lista de campanhas: webcam y0-603 + tabela y603-826, legenda desce pro
+          vao preto abaixo da tabela pra nao cobrir a linha da campanha. */}
+      {words.filter((w) => w.startFrame >= BOUNDARY_FRAME && w.startFrame < CTA_FRAME).length > 0 && (
+        <AlertCaption words={words.filter((w) => w.startFrame >= BOUNDARY_FRAME && w.startFrame < CTA_FRAME)} chunkSize={2} fontSize={50} top={900} maxWidth={560} boxColor={ORANGE} />
+      )}
+      {words.filter((w) => w.startFrame >= CTA_FRAME).length > 0 && (
+        <AlertCaption words={words.filter((w) => w.startFrame >= CTA_FRAME)} chunkSize={2} fontSize={50} top={660} maxWidth={560} boxColor={ORANGE} />
       )}
 
       <Sequence from={sf(18.46, fps)} durationInFrames={sf(3.5, fps)}>
