@@ -36,7 +36,7 @@ const ProgressBar: React.FC = () => {
 // na linha de corte entre as duas metades, não no meio do espaço vazio.
 export const ReelsDepoimento: React.FC<ReelsDepoimentoProps> = ({
   videoSrc = "assets/depoimento_base.mp4",
-  captionsFile = "captions_dep.json",
+  captionsFile = "captions_dep_full.json",
   transparent = false,
 }) => {
   const {fps} = useVideoConfig();
