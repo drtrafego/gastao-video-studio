@@ -40,6 +40,7 @@ import {ReelsTelinhaPreta} from "./compositions/ReelsTelinhaPreta";
 import {ReelsCampanhas} from "./compositions/ReelsCampanhas";
 import {ReelsCampanhasCurto} from "./compositions/ReelsCampanhasCurto";
 import {ReelsCriativosCurso} from "./compositions/ReelsCriativosCurso";
+import {ReelsDepoimento} from "./compositions/ReelsDepoimento";
 import {ReelsMentira} from "./compositions/ReelsMentira";
 
 export const RemotionRoot: React.FC = () => {
@@ -304,6 +305,18 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{
             videoSrc: "assets/criativos_curso_base.mp4",
             captionsFile: "captions_curso_curto_sped.json",
+          }}
+        />
+        <Composition
+          id="ReelsDepoimento"
+          component={ReelsDepoimento}
+          durationInFrames={1045}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/depoimento_base.mp4",
+            captionsFile: "captions_dep.json",
           }}
         />
         <Composition
