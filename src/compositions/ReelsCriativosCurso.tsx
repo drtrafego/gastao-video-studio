@@ -116,7 +116,7 @@ const KeyChip: React.FC<{text: string; dur: number}> = ({text, dur}) => {
 // do Gastao 05/08).
 export const ReelsCriativosCurso: React.FC<ReelsCriativosCursoProps> = ({
   videoSrc = "assets/criativos_curso_base.mp4",
-  captionsFile = "captions_curso.json",
+  captionsFile = "captions_curso_curto_sped.json",
   transparent = false,
 }) => {
   const {fps} = useVideoConfig();
@@ -128,7 +128,7 @@ export const ReelsCriativosCurso: React.FC<ReelsCriativosCursoProps> = ({
       .then((r) => r.json())
       .then((caps: {text: string; startMs: number; endMs: number}[]) => {
         const w: AlertWord[] = caps
-          .filter((c) => c.text && c.text.trim().length > 0 && c.startMs >= 5700)
+          .filter((c) => c.text && c.text.trim().length > 0 && c.startMs >= 4750)
           .map((c) => ({
             text: c.text.trim().replace(/^Cloud$/i, "Claude").replace(/^Cloud,$/i, "Claude,").replace(/^Cloud\.$/i, "Claude."),
             startFrame: Math.round((c.startMs / 1000) * fps),
@@ -146,8 +146,8 @@ export const ReelsCriativosCurso: React.FC<ReelsCriativosCursoProps> = ({
 
       <ProgressBar />
 
-      {/* Hook = fala literal de abertura (0-5.7s) */}
-      <Sequence from={0} durationInFrames={sf(5.7, fps)}>
+      {/* Hook = fala literal de abertura (0-4.75s, ja acelerado 1.2x) */}
+      <Sequence from={0} durationInFrames={sf(4.75, fps)}>
         <HookCard
           parts={[
             {text: "Olha que"},
@@ -162,14 +162,14 @@ export const ReelsCriativosCurso: React.FC<ReelsCriativosCursoProps> = ({
         <AlertCaption words={words} chunkSize={2} fontSize={54} top={770} maxWidth={560} boxColor={ORANGE} />
       )}
 
-      <Sequence from={sf(63.9, fps)} durationInFrames={sf(6.4, fps)}>
-        <KeyChip text="7 IMAGENS + 2 CARROSSÉIS + 3 VÍDEOS 🖼️" dur={sf(6.4, fps)} />
+      <Sequence from={sf(20.5, fps)} durationInFrames={sf(5.3, fps)}>
+        <KeyChip text="7 IMAGENS + 2 CARROSSÉIS + 3 VÍDEOS 🖼️" dur={sf(5.3, fps)} />
       </Sequence>
-      <Sequence from={sf(75.4, fps)} durationInFrames={sf(4.8, fps)}>
-        <KeyChip text="API NANO BANANA 🍌" dur={sf(4.8, fps)} />
+      <Sequence from={sf(30.1, fps)} durationInFrames={sf(4.0, fps)}>
+        <KeyChip text="API NANO BANANA 🍌" dur={sf(4.0, fps)} />
       </Sequence>
-      <Sequence from={sf(95.5, fps)} durationInFrames={sf(13.0, fps)}>
-        <KeyChip text="LARANJA IGUAL AO CLAUDE 🟠" dur={sf(13.0, fps)} />
+      <Sequence from={sf(46.8, fps)} durationInFrames={sf(10.8, fps)}>
+        <KeyChip text="LARANJA IGUAL AO CLAUDE 🟠" dur={sf(10.8, fps)} />
       </Sequence>
     </AbsoluteFill>
   );

@@ -297,13 +297,13 @@ export const RemotionRoot: React.FC = () => {
         <Composition
           id="ReelsCriativosCurso"
           component={ReelsCriativosCurso}
-          durationInFrames={3846}
+          durationInFrames={1796}
           fps={30}
           width={1080}
           height={1920}
           defaultProps={{
             videoSrc: "assets/criativos_curso_base.mp4",
-            captionsFile: "captions_curso.json",
+            captionsFile: "captions_curso_curto_sped.json",
           }}
         />
         <Composition
