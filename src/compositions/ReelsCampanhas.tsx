@@ -97,8 +97,10 @@ const KeyChip: React.FC<{text: string; dur: number}> = ({text, dur}) => {
   const enter = spring({frame, fps, config: {damping: 14, stiffness: 170, mass: 0.6}, durationInFrames: 10});
   const exit = interpolate(frame, [dur - 8, dur], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   const y = interpolate(enter, [0, 1], [20, 0]);
+  // chip desce pra dentro da tarja preta (comeca y1680), um pouco abaixo dela
+  // (pedido do Gastao 05/08: estava em cima do terminal, cobrindo texto real)
   return (
-    <div style={{position: "absolute", top: 1340, left: 0, width: "100%", display: "flex", justifyContent: "flex-start", paddingLeft: 60, zIndex: 56}}>
+    <div style={{position: "absolute", top: 1720, left: 0, width: "100%", display: "flex", justifyContent: "flex-start", paddingLeft: 60, zIndex: 56}}>
       <div
         style={{
           maxWidth: 500,

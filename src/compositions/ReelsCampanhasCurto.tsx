@@ -90,7 +90,7 @@ const KeyChip: React.FC<{text: string; dur: number}> = ({text, dur}) => {
   const exit = interpolate(frame, [dur - 8, dur], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   const y = interpolate(enter, [0, 1], [20, 0]);
   return (
-    <div style={{position: "absolute", top: 1340, left: 0, width: "100%", display: "flex", justifyContent: "flex-start", paddingLeft: 60, zIndex: 56}}>
+    <div style={{position: "absolute", top: 1720, left: 0, width: "100%", display: "flex", justifyContent: "flex-start", paddingLeft: 60, zIndex: 56}}>
       <div
         style={{
           maxWidth: 500,
