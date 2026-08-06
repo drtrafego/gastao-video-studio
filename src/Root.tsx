@@ -38,6 +38,8 @@ import {ReelsAmandaEstrutura} from "./compositions/ReelsAmandaEstrutura";
 import {ReelsGabinete} from "./compositions/ReelsGabinete";
 import {ReelsTelinhaPreta} from "./compositions/ReelsTelinhaPreta";
 import {ReelsCampanhas} from "./compositions/ReelsCampanhas";
+import {ReelsCampanhasCurto} from "./compositions/ReelsCampanhasCurto";
+import {ReelsCriativosCurso} from "./compositions/ReelsCriativosCurso";
 import {ReelsMentira} from "./compositions/ReelsMentira";
 
 export const RemotionRoot: React.FC = () => {
@@ -278,6 +280,30 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{
             videoSrc: "assets/campanha_base.mp4",
             captionsFile: "captions_campanha.json",
+          }}
+        />
+        <Composition
+          id="ReelsCampanhasCurto"
+          component={ReelsCampanhasCurto}
+          durationInFrames={2270}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/campanha_curto_base.mp4",
+            captionsFile: "captions_campanha_curto.json",
+          }}
+        />
+        <Composition
+          id="ReelsCriativosCurso"
+          component={ReelsCriativosCurso}
+          durationInFrames={3846}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            videoSrc: "assets/criativos_curso_base.mp4",
+            captionsFile: "captions_curso.json",
           }}
         />
         <Composition
