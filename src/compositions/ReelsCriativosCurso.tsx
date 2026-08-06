@@ -116,7 +116,7 @@ const KeyChip: React.FC<{text: string; dur: number}> = ({text, dur}) => {
 // do Gastao 05/08).
 export const ReelsCriativosCurso: React.FC<ReelsCriativosCursoProps> = ({
   videoSrc = "assets/criativos_curso_base.mp4",
-  captionsFile = "captions_curso_curto_sped.json",
+  captionsFile = "captions_curso_v2.json",
   transparent = false,
 }) => {
   const {fps} = useVideoConfig();
@@ -168,8 +168,8 @@ export const ReelsCriativosCurso: React.FC<ReelsCriativosCursoProps> = ({
       <Sequence from={sf(30.1, fps)} durationInFrames={sf(4.0, fps)}>
         <KeyChip text="API NANO BANANA 🍌" dur={sf(4.0, fps)} />
       </Sequence>
-      <Sequence from={sf(46.8, fps)} durationInFrames={sf(10.8, fps)}>
-        <KeyChip text="LARANJA IGUAL AO CLAUDE 🟠" dur={sf(10.8, fps)} />
+      <Sequence from={sf(40.7, fps)} durationInFrames={sf(7.8, fps)}>
+        <KeyChip text="LARANJA IGUAL AO CLAUDE 🟠" dur={sf(7.8, fps)} />
       </Sequence>
     </AbsoluteFill>
   );
