@@ -139,9 +139,10 @@ export const ReelsCampanhasCurto: React.FC<ReelsCampanhasCurtoProps> = ({
       .catch(() => continueRender(handle));
   }, [captionsFile, fps, handle]);
 
-  // boundary: a partir de 69.8s (frame 2094) o trecho e do bruto campanha4 (tela
-  // cheia do Gerenciador de Anuncios), legenda ancorada a esquerda como no original.
-  const BOUNDARY_FRAME = 2094;
+  // boundary: a partir de 69.7s (frame 2091) o trecho e do campanha4 reenquadrado
+  // de novo (webcam em cima + cards da campanha embaixo), legenda centralizada no
+  // vao entre as duas metades (igual ao ReelsCampanhas).
+  const BOUNDARY_FRAME = 2091;
 
   return (
     <AbsoluteFill style={{backgroundColor: transparent ? "transparent" : "#000"}}>
@@ -174,7 +175,7 @@ export const ReelsCampanhasCurto: React.FC<ReelsCampanhasCurtoProps> = ({
         <AlertCaption words={words.filter((w) => w.startFrame < BOUNDARY_FRAME)} chunkSize={2} fontSize={54} top={770} maxWidth={560} boxColor={ORANGE} />
       )}
       {words.filter((w) => w.startFrame >= BOUNDARY_FRAME).length > 0 && (
-        <AlertCaption words={words.filter((w) => w.startFrame >= BOUNDARY_FRAME)} chunkSize={2} fontSize={54} top={1080} maxWidth={520} boxColor={ORANGE} align="left" left={50} />
+        <AlertCaption words={words.filter((w) => w.startFrame >= BOUNDARY_FRAME)} chunkSize={2} fontSize={50} top={660} maxWidth={560} boxColor={ORANGE} />
       )}
 
       <Sequence from={sf(18.46, fps)} durationInFrames={sf(3.5, fps)}>

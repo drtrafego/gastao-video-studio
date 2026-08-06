@@ -121,7 +121,7 @@ const KeyChip: React.FC<{text: string; dur: number}> = ({text, dur}) => {
 
 export const ReelsCampanhas: React.FC<ReelsCampanhasProps> = ({
   videoSrc = "assets/campanha_base.mp4",
-  captionsFile = "captions_campanha.json",
+  captionsFile = "captions_campanha_v2.json",
   transparent = false,
 }) => {
   const {fps} = useVideoConfig();
@@ -181,8 +181,11 @@ export const ReelsCampanhas: React.FC<ReelsCampanhasProps> = ({
       {words.filter((w) => w.startFrame < 4476).length > 0 && (
         <AlertCaption words={words.filter((w) => w.startFrame < 4476)} chunkSize={2} fontSize={54} top={770} maxWidth={560} boxColor={ORANGE} />
       )}
+      {/* campanha4 (frame>=4476) foi reenquadrado de novo (05/08): webcam em cima
+          (y0-608) + cards da campanha embaixo (y819-1709), com um vao preto sem
+          informacao em y608-819 — mesma logica da linha de corte, so que aqui. */}
       {words.filter((w) => w.startFrame >= 4476).length > 0 && (
-        <AlertCaption words={words.filter((w) => w.startFrame >= 4476)} chunkSize={2} fontSize={54} top={1080} maxWidth={520} boxColor={ORANGE} align="left" left={50} />
+        <AlertCaption words={words.filter((w) => w.startFrame >= 4476)} chunkSize={2} fontSize={50} top={660} maxWidth={560} boxColor={ORANGE} />
       )}
 
       {/* chips de destaque embaixo (pedido do Gastao: embaixo eh mais confiavel que em cima) */}
